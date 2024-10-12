@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seki-karasu-deployment
+  labels:
+    app: seki-karasu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seki-karasu
+  template:
+    metadata:
+      labels:
+        app: seki-karasu
+    spec:
+      containers:
+      - name: seki-karasu
+        image: us.gcr.io/cencosudx/seki/karasu:3
+        ports:
+        - containerPort: 8000
+        env:
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: karasu
+              key: OPENAI_API_KEY
