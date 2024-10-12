@@ -1,139 +1,116 @@
-# Seki Karasu
+# **The Purge of the Gods**
 
-## Descripción
-Seki Karasu es un agente inteligente diseñado para facilitar la gestión y el desarrollo de proyectos de software. A través de la integración de diversas herramientas y componentes, proporciona una experiencia de desarrollo más fluida y eficiente. Este agente hace uso de la API de OpenAI, específicamente ChatGPT-4, para procesar y responder consultas, apoyando así en la automatización y toma de decisiones durante el ciclo de desarrollo de software.
+## Overview
+This project utilizes an intelligent agent developed with OpenAI's API, specifically ChatGPT-4, to collaboratively create the novel **The Purge of the Gods**. The agent assists in the iterative process of writing, providing suggestions and answering questions about plot development, chapter structure, and other narrative elements.
 
-## Funcionamiento
-El agente Seki Karasu opera mediante la creación de un *knowledge base* a partir de archivos en Markdown. Estos archivos son procesados y utilizados para alimentar al asistente, permitiéndole responder preguntas relacionadas con el proyecto de manera precisa. Además, Seki Karasu puede crear y recrear dinámicamente su base de conocimientos para mantenerse actualizado con los últimos cambios en el proyecto.
+## How It Works
+The novel is originally written in Spanish, and the `create-md-en.sh` script leverages OpenAI's API to translate the entire book into English. The agent processes Markdown files, translates them, and compiles them into various formats like PDF and EPUB using Pandoc.
 
-## Instalación y Configuración con Poetry
+## Installation and Setup with Poetry
 
-Para gestionar las dependencias y el entorno virtual de Seki Karasu, utilizamos Poetry. A continuación, se detallan los pasos para configurar y ejecutar el proyecto.
+To manage dependencies and the virtual environment for this project, we use Poetry. Follow the steps below to set up and run the project.
 
-### 1. Instalación de Poetry
-Si no tienes Poetry instalado, puedes hacerlo ejecutando el siguiente comando:
+### 1. Installing Poetry
+If you don't have Poetry installed, you can do so by running the following command:
 
 ````bash
 pip install poetry
 ````
 
-### 2. Instalación de Dependencias
-Una vez instalado Poetry, puedes instalar todas las dependencias necesarias ejecutando:
+### 2. Installing Dependencies
+Once Poetry is installed, you can install all the necessary dependencies by running:
 
 ````bash
 poetry install
 ````
 
-Esto creará un entorno virtual aislado y descargará todas las dependencias listadas en el archivo `pyproject.toml`.
+This will create an isolated virtual environment and download all the dependencies listed in the `pyproject.toml` file.
 
-### 3. Activación del Entorno Virtual
-Para activar el entorno virtual, ejecuta:
+### 3. Activating the Virtual Environment
+To activate the virtual environment, run:
 
 ````bash
 poetry shell
 ````
 
-Esto te permitirá interactuar con el entorno configurado para el proyecto.
+This will allow you to interact with the environment configured for the project.
 
-## Configuración de Variables de Entorno
+## Setting Environment Variables
 
-Para que Seki Karasu funcione correctamente, necesita autenticarse con la API de OpenAI utilizando una clave API. Puedes configurar esta clave API de dos maneras: mediante un archivo `.env` o pasando la variable de entorno directamente.
+For the agent to function correctly, it needs to authenticate with OpenAI’s API using an API key. You can set this key using either a `.env` file or by passing the environment variable directly.
 
-### Usando un Archivo `.env`
+### Using a `.env` File
 
-1. Crea un archivo en la raíz de tu proyecto llamado `.env`.
-2. Dentro de este archivo, añade la siguiente línea:
-
-````plaintext
-OPENAI_API_KEY=tu_clave_api_aquí
-````
-
-Reemplaza `tu_clave_api_aquí` con tu clave API real de OpenAI.
-
-3. Asegúrate de que tu aplicación esté configurada para cargar variables de entorno desde este archivo al inicio.
-
-### Pasando la Variable de Entorno Directamente
-
-Alternativamente, puedes configurar la variable de entorno `OPENAI_API_KEY` directamente en tu entorno de ejecución. La forma de hacer esto varía dependiendo del sistema operativo:
-
-- **En Windows (en la línea de comandos CMD):**
+1. Create a file in the project’s root directory called `.env`.
+2. Inside this file, add the following line:
 
 ````plaintext
-set OPENAI_API_KEY=tu_clave_api_aquí
+OPENAI_API_KEY=your_api_key_here
 ````
 
-- **En Linux y macOS (en la terminal):**
+Replace `your_api_key_here` with your actual OpenAI API key.
+
+### Setting Environment Variables Directly
+
+Alternatively, you can set the `OPENAI_API_KEY` environment variable directly in your execution environment.
+
+- **On Windows (CMD):**
 
 ````plaintext
-export OPENAI_API_KEY=tu_clave_api_aquí
+set OPENAI_API_KEY=your_api_key_here
 ````
 
-Recuerda reemplazar `tu_clave_api_aquí` con tu clave API real de OpenAI.
+- **On Linux and macOS (terminal):**
 
-> **Importante**
-> Por razones de seguridad, nunca subas el archivo `.env` a repositorios públicos o compartas tu clave API de OpenAI públicamente. Si estás colaborando en un proyecto, considera formas seguras de compartir estas claves, como gestores de secretos o variables de entorno configuradas directamente en el entorno de despliegue.
+````plaintext
+export OPENAI_API_KEY=your_api_key_here
+````
 
-## Levantamiento de la Página Web
-Seki Karasu viene con una interfaz web que permite interactuar con el agente de manera fácil y directa. Para levantar la página web, sigue estos pasos:
+> **Important:**  
+> For security reasons, never commit the `.env` file to public repositories or share your OpenAI API key publicly. When collaborating, consider using secret management tools or configure environment variables directly in your deployment environment.
 
-1. Asegúrate de tener Python y las dependencias necesarias instaladas.
-2. Ejecuta el servidor web utilizando:
+## Using the Translation Script
+
+The book is written in Spanish, and you can use the `create-md-en.sh` script to translate it into English using OpenAI's translation capabilities. The script automates the translation of the Markdown files.
+
+To run the script, use the following command:
 
 ````bash
-python app.py
+bash create-md-en.sh
 ````
 
-3. Accede a la interfaz web a través de tu navegador visitando `http://localhost:8888` o el puerto específico configurado.
+This will generate an English version of the book from the original Spanish Markdown files.
 
-## Creación del Knowledge Base
-Para crear y actualizar el *knowledge base* de Seki Karasuno, puedes utilizar los siguientes comandos:
+## Building the Book with Pandoc
 
-- ````bash
-  python chat.py create
-  ````: Crea el asistente y su *knowledge base* a partir de los archivos en Markdown disponibles en el directorio `knowledge`.
-  
-- ````bash
-  python chat.py recreate
-  ````: Borra el asistente existente y vuelve a crearlo, actualizando así el *knowledge base* con la información más reciente.
+You can convert the translated Markdown files into a PDF or EPUB format using Pandoc. Here is the Pandoc command used to compile the book into a PDF:
 
-Estos comandos aseguran que Seki Karasuno siempre esté actualizado con la última información de tu proyecto.
+````bash
+pandoc libro_completo_en.md -o libro_completo_en.pdf --pdf-engine=xelatex --template=template.tex
+````
 
-## Personalización del Asistente Seki Karasuno
+This command uses the `libro_completo_en.md` file, which contains the full translated book, and generates a PDF using XeLaTeX with a specified LaTeX template.
 
-Para personalizar el asistente Seki Karasuno, puedes modificar el contenido de su base de conocimientos (`knowledge`) y ajustar sus comportamientos (`behaviors`) según tus necesidades. Esta sección te guiará sobre cómo realizar estas personalizaciones.
+## Commands for Managing the Agent
 
-### Actualización del Contenido de Knowledge
+- To create the knowledge base from Markdown files:
 
-El asistente utiliza archivos Markdown almacenados en la carpeta `knowledge` para construir su base de conocimientos. Para actualizar esta información, sigue estos pasos:
+````bash
+python agent.py create
+````
 
-1. **Editar o Añadir Archivos Markdown**: Navega a la carpeta `knowledge` de tu proyecto y edita los archivos Markdown existentes o añade nuevos archivos para incluir la información que deseas que el asistente conozca.
+- To recreate the knowledge base with updates:
 
-2. **Regenerar el Knowledge Base**: Una vez actualizados los archivos Markdown, utiliza el comando `python chat.py recreate` para regenerar el asistente con la base de conocimientos actualizada. Este proceso borrará el asistente existente y creará uno nuevo con el contenido recién actualizado.
+````bash
+python agent.py recreate
+````
 
-### Modificación de Behaviors
-
-Los `behaviors` definen cómo el asistente debe interpretar y responder a las consultas basándose en el conocimiento proporcionado. Para ajustar estos comportamientos, modifica el archivo en la carpeta `behaviors`:
-
-1. **Editar el Archivo de Behaviors**: Encuentra y edita el archivo `default.txt` dentro de la carpeta `behaviors`, ajustando las instrucciones según cómo deseas que el asistente responda.
-
-2. **Aplicar los Cambios**: Al igual que con la actualización del knowledge, usa el comando `python chat.py recreate` para aplicar los cambios realizados en los behaviors del asistente.
-
-### Notas Importantes
-
-- Al modificar tanto el contenido de knowledge como los behaviors, es crucial realizar pruebas para asegurar que el asistente se comporta como se espera. Considera crear un conjunto de preguntas y respuestas para probar las nuevas configuraciones.
-
-- Recuerda que cualquier cambio en los archivos de knowledge o behaviors requerirá que regeneres el asistente para que los cambios surtan efecto.
-
-Con estas personalizaciones, puedes adaptar Seki Karasuno para que mejor se ajuste a las necesidades y especificaciones de tu proyecto, mejorando así la experiencia de los desarrolladores y usuarios finales.
+These commands ensure that the agent is always up-to-date with the latest information from your project.
 
 ## Docker
 
-Si deseas ejecutar Seki Karasu en un contenedor Docker, puedes hacerlo con el siguiente comando:
+If you want to run the agent in a Docker container, you can do so with the following command:
 
 ````bash
-docker run -e OPENAI_API_KEY=tu_clave_api_aquí -p 8000:8000 seki-karasu
+docker run -e OPENAI_API_KEY=your_api_key_here -p 8000:8000 the-purge-of-the-gods-agent
 ````
-# The-Purge-of-the-Gods
-# The-Purge-of-the-Gods
-# The-Purge-of-the-Gods
-# The-Purge-of-the-Gods
