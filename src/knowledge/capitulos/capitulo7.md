@@ -48,7 +48,3 @@ Mientras sus padres yacían en el suelo, incapaces de moverse, sus cuerpos conve
 —No me importa que me odien —murmuró, más para sí mismo que para ellos. Su voz resonaba como un eco frío en la sala vacía—. Nunca lo hicieron.
 
 Dio media vuelta, dejando atrás los cuerpos de quienes alguna vez lo criaron. No miró hacia atrás. No sintió remordimiento, ni dolor, ni culpa. No importaba si eran sus padres. No importaba si alguna vez compartieron algo más que sangre. Para Zevid, lo único que importaba era el control. Y ese control, finalmente, estaba en sus manos.
-
----
-
-Este capítulo es el punto de quiebre definitivo. Zevid tortura a sus propios padres sin sentir compasión ni rencor, solo la necesidad de poder. No hay justificación emocional o venganza, solo la fría ambición de alguien dispuesto a destruir todo, incluso a aquellos que deberían haber significado algo para él, por el control absoluto.
